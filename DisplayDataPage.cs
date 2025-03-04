@@ -52,9 +52,15 @@ namespace VisitedCountries
 
         private void AddDataButtonClick(object sender, EventArgs e)
         {
+            ListOfCountriesPage list = Application.OpenForms.OfType<ListOfCountriesPage>().FirstOrDefault();
             try
             {
                 DatabaseManager.Instance.AddData(country, DateTimePicker.Value.Date);
+                if (list != null)
+                {
+                    //list.AddToList(country.Name.Common, DateTimePicker.Value.Date);
+                }
+
             } catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message);

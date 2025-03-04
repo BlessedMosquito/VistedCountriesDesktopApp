@@ -13,13 +13,19 @@ using MaterialSkin.Controls;
 
 namespace VisitedCountries
 {
-    public partial class MainPage : MaterialSkin.Controls.MaterialForm
+    public partial class MainPage : MaterialForm
     {
         public MainPage()
         {
             InitializeComponent();
             InitializeMaterialSkin();
             CustomizeUI();
+
+            ListOfCountriesPage listPage = Application.OpenForms.OfType<ListOfCountriesPage>().FirstOrDefault();
+            if(listPage != null )
+            {
+                listPage.InitList(DatabaseManager.Instance.GetData());
+            }
         }
 
         private void InitializeMaterialSkin()
@@ -69,16 +75,28 @@ namespace VisitedCountries
             }
         }
 
-        private void ListOfCountiresButton_Click(object sender, EventArgs e)
+        public void ClearTextField()
+        {
+            CountryNameTextBox.Clear();
+        }
+
+        private void QuitTabPageClick(object sender, EventArgs e)
+        { 
+            Application.Exit();
+        }
+
+        private void CountriesTabPageClick(object sender, EventArgs e)
         {
             ListOfCountriesPage page = new ListOfCountriesPage();
             this.Hide();
             page.Show();
         }
 
-        public void ClearTextField()
+        private void MainPage_Load(object sender, EventArgs e)
         {
-            CountryNameTextBox.Clear();
+            // TODO: Ten wiersz kodu wczytuje dane do tabeli 'visitedCountriesDBDataSet.Countries' . Możesz go przenieść lub usunąć.
+            this.countriesTableAdapter.Fill(this.visitedCountriesDBDataSet.Countries);
+
         }
 
     }

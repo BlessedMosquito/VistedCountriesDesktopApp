@@ -124,7 +124,7 @@ namespace VisitedCountries
             this.Controls.Add(this.DateTimePicker);
             this.Controls.Add(this.CountryInformationTextBox);
             this.Name = "DisplayDataPage";
-            this.Text = "DisplayDataPage";
+            this.Text = "Add country to your visited list";
             this.ResumeLayout(false);
             this.PerformLayout();
 

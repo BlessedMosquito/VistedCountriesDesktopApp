@@ -36,7 +36,6 @@ namespace VisitedCountries
             }
         }
 
-        //TODO: Zmienic aby odpwiadała zmianom w Counry będzie kilka tabeli z relacją do tabeli COuntires lub przechowywanie JSONA w bazie
         public void AddData(Country country, DateTime date)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
@@ -67,6 +66,49 @@ namespace VisitedCountries
                 }
             }
         }
+
+        public List<KeyValuePair<Country, DateTime>> GetData()
+        {
+            List<KeyValuePair<Country, DateTime>> list = new List<KeyValuePair<Country, DateTime>>();
+
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT NAME, CAPITAL, POPULATION, REGION, SUBREGION, Date FROM Countries";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    con.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            NameInfo nameInfo = new NameInfo
+                            {
+                                Official = reader["NAME"].ToString()
+                            };
+
+                            List<string> capitals = new List<string> { reader["CAPITAL"].ToString() };
+
+                            Country country = new Country(
+                                nameInfo,
+                                capitals,
+                                Convert.ToInt32(reader["POPULATION"]),
+                                reader["REGION"].ToString(),
+                                reader["SUBREGION"].ToString()
+                            );
+                            DateTime date = Convert.ToDateTime(reader["DATE"]);
+
+                            list.Add(new KeyValuePair<Country, DateTime>(country, date));
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
+
 
 
 

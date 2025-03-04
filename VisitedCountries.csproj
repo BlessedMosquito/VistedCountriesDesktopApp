@@ -77,8 +77,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisitedCountriesDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VisitedCountriesDBDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DisplayDataPage.resx">
       <DependentUpon>DisplayDataPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListOfCountriesPage.resx">
+      <DependentUpon>ListOfCountriesPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
@@ -102,6 +110,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="VisitedCountriesDBDataSet.xsc">
+      <DependentUpon>VisitedCountriesDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VisitedCountriesDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VisitedCountriesDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VisitedCountriesDBDataSet.xss">
+      <DependentUpon>VisitedCountriesDBDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
