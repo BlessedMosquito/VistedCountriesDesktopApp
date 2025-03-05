@@ -57,11 +57,11 @@
     <Compile Include="APIQuery.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DatabaseManager.cs" />
-    <Compile Include="DisplayDataPage.cs">
+    <Compile Include="CountryInformationPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DisplayDataPage.Designer.cs">
-      <DependentUpon>DisplayDataPage.cs</DependentUpon>
+    <Compile Include="CountryInformationPage.Designer.cs">
+      <DependentUpon>CountryInformationPage.cs</DependentUpon>
     </Compile>
     <Compile Include="MainPage.cs">
       <SubType>Form</SubType>
@@ -79,8 +79,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VisitedCountriesDBDataSet.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DisplayDataPage.resx">
-      <DependentUpon>DisplayDataPage.cs</DependentUpon>
+    <EmbeddedResource Include="CountryInformationPage.resx">
+      <DependentUpon>CountryInformationPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>

@@ -60,13 +60,14 @@ namespace VisitedCountries
             return countryDetails;
         }
 
-        public Country(NameInfo name, List<string> capital, int population, string region, string subRegion)
+        public Country(NameInfo name, List<string> capital, int population, string region, string subRegion, double area)
         {
             Name = name;
             Capital = capital;
             Population = population;
             Region = region;
             SubRegion = subRegion;
+            Area = area;
         }
 
         public string CapitalListToString()

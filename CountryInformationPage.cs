@@ -14,13 +14,13 @@ using VisitedCountries.VisitedCountriesDBDataSetTableAdapters;
 
 namespace VisitedCountries
 {
-    public partial class DisplayDataPage : MaterialForm
+    public partial class CountryInformationPage : MaterialForm
     {
         private Country country;
         private MainPage main = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
 
         CountriesTableAdapter adapter = new CountriesTableAdapter();
-        public DisplayDataPage(Country _country)
+        public CountryInformationPage(Country _country)
         {
             InitializeComponent();
             InitializeMaterialSkin();
@@ -37,9 +37,9 @@ namespace VisitedCountries
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
 
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(
-                MaterialSkin.Primary.Blue500,    // Główny kolor
-                MaterialSkin.Primary.Blue700,    // Cięższy cień
-                MaterialSkin.Primary.BlueGrey500, // Akcent
+                MaterialSkin.Primary.Blue500,
+                MaterialSkin.Primary.Blue700,   
+                MaterialSkin.Primary.BlueGrey500, 
                 MaterialSkin.Accent.LightBlue200,
                 MaterialSkin.TextShade.WHITE);
         }
@@ -61,7 +61,7 @@ namespace VisitedCountries
 
                 //DatabaseManager.Instance.AddData(country, DateTimePicker.Value.Date);
                 string capital = country.CapitalListToString();
-                adapter.Insert(country.Name.Official, capital, country.Population, country.Region, country.SubRegion, DateTimePicker.Value.Date);
+                adapter.Insert(country.Name.Official, capital, country.Population, country.Region, country.SubRegion, DateTimePicker.Value.Date, Convert.ToInt32(country.Area));
                 MessageBox.Show("Added country");
             } catch(Exception ex) 
             {

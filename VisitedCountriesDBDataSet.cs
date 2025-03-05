@@ -2,7 +2,9 @@
 {
     partial class VisitedCountriesDBDataSet
     {
-
+        partial class CountriesDataTable
+        {
+        }
     }
 }
 

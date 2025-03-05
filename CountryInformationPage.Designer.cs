@@ -3,7 +3,7 @@ using MaterialSkin.Controls;
 
 namespace VisitedCountries
 {
-    partial class DisplayDataPage
+    partial class CountryInformationPage
     {
         /// <summary>
         /// Required designer variable.

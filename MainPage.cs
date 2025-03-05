@@ -19,7 +19,7 @@ namespace VisitedCountries
         {
             InitializeComponent();
             InitializeMaterialSkin();
-            CustomizeUI();     
+            CustomizeUI();   
         }
 
         private void InitializeMaterialSkin()
@@ -74,7 +74,7 @@ namespace VisitedCountries
 
                 if (country != null)
                 {
-                    DisplayDataPage page = new DisplayDataPage(country);
+                    CountryInformationPage page = new CountryInformationPage(country);
                     page.Show();
                     this.Hide();
                 }
@@ -107,5 +107,27 @@ namespace VisitedCountries
             this.countriesTableAdapter.Fill(this.visitedCountriesDBDataSet.Countries);
 
         }
+
+        private void CalculateArea(object sender, EventArgs e)
+        {
+            const long TOTAL_AREA = 148_000_000; // 148 mln km^2
+            var data = this.countriesTableAdapter.GetData();
+
+            HashSet<KeyValuePair<string, int>> countries = new HashSet<KeyValuePair<string, int>>(
+                data.Select(row => new KeyValuePair<string, int>(row.NAME, row.AREA))
+            );
+
+            long total = countries.Sum(x => x.Value);
+
+            double percentage = (double)total / TOTAL_AREA * 100;
+
+            string information = $"You have seen: {percentage:F2}% of the world :)";
+
+
+            label1.Text = information;
+
+
+        }
+
     }
 }

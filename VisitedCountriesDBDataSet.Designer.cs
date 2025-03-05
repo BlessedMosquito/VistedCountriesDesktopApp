@@ -293,6 +293,8 @@ namespace VisitedCountries {
             
             private global::System.Data.DataColumn columnDATE;
             
+            private global::System.Data.DataColumn columnAREA;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public CountriesDataTable() {
@@ -384,6 +386,14 @@ namespace VisitedCountries {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AREAColumn {
+                get {
+                    return this.columnAREA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +429,7 @@ namespace VisitedCountries {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CountriesRow AddCountriesRow(string NAME, string CAPITAL, int POPULATION, string REGION, string SUBREGION, System.DateTime DATE) {
+            public CountriesRow AddCountriesRow(string NAME, string CAPITAL, int POPULATION, string REGION, string SUBREGION, System.DateTime DATE, int AREA) {
                 CountriesRow rowCountriesRow = ((CountriesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -428,7 +438,8 @@ namespace VisitedCountries {
                         POPULATION,
                         REGION,
                         SUBREGION,
-                        DATE};
+                        DATE,
+                        AREA};
                 rowCountriesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCountriesRow);
                 return rowCountriesRow;
@@ -465,6 +476,7 @@ namespace VisitedCountries {
                 this.columnREGION = base.Columns["REGION"];
                 this.columnSUBREGION = base.Columns["SUBREGION"];
                 this.columnDATE = base.Columns["DATE"];
+                this.columnAREA = base.Columns["AREA"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -484,6 +496,8 @@ namespace VisitedCountries {
                 base.Columns.Add(this.columnSUBREGION);
                 this.columnDATE = new global::System.Data.DataColumn("DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDATE);
+                this.columnAREA = new global::System.Data.DataColumn("AREA", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAREA);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -729,6 +743,22 @@ namespace VisitedCountries {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int AREA {
+                get {
+                    try {
+                        return ((int)(this[this.tableCountries.AREAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Wartość z kolumny \'AREA\' w tabeli \'Countries\' to DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCountries.AREAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsPOPULATIONNull() {
                 return this.IsNull(this.tableCountries.POPULATIONColumn);
             }
@@ -749,6 +779,18 @@ namespace VisitedCountries {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDATENull() {
                 this[this.tableCountries.DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAREANull() {
+                return this.IsNull(this.tableCountries.AREAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAREANull() {
+                this[this.tableCountries.AREAColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -918,10 +960,11 @@ namespace VisitedCountries.VisitedCountriesDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("REGION", "REGION");
             tableMapping.ColumnMappings.Add("SUBREGION", "SUBREGION");
             tableMapping.ColumnMappings.Add("DATE", "DATE");
+            tableMapping.ColumnMappings.Add("AREA", "AREA");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Countries] WHERE (([ID] = @Original_ID) AND ([NAME] = @Original_NAME) AND ([CAPITAL] = @Original_CAPITAL) AND ((@IsNull_POPULATION = 1 AND [POPULATION] IS NULL) OR ([POPULATION] = @Original_POPULATION)) AND ([REGION] = @Original_REGION) AND ([SUBREGION] = @Original_SUBREGION) AND ((@IsNull_DATE = 1 AND [DATE] IS NULL) OR ([DATE] = @Original_DATE)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Countries] WHERE (([ID] = @Original_ID) AND ([NAME] = @Original_NAME) AND ([CAPITAL] = @Original_CAPITAL) AND ((@IsNull_POPULATION = 1 AND [POPULATION] IS NULL) OR ([POPULATION] = @Original_POPULATION)) AND ([REGION] = @Original_REGION) AND ([SUBREGION] = @Original_SUBREGION) AND ((@IsNull_DATE = 1 AND [DATE] IS NULL) OR ([DATE] = @Original_DATE)) AND ((@IsNull_AREA = 1 AND [AREA] IS NULL) OR ([AREA] = @Original_AREA)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NAME", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -932,10 +975,12 @@ namespace VisitedCountries.VisitedCountriesDBDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SUBREGION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SUBREGION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DATE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AREA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AREA", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AREA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AREA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Countries] ([NAME], [CAPITAL], [POPULATION], [REGION], [SUBREGION], [DATE]) VALUES (@NAME, @CAPITAL, @POPULATION, @REGION, @SUBREGION, @DATE);
-SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Countries] ([NAME], [CAPITAL], [POPULATION], [REGION], [SUBREGION], [DATE], [AREA]) VALUES (@NAME, @CAPITAL, @POPULATION, @REGION, @SUBREGION, @DATE, @AREA);
+SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE, AREA FROM Countries WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CAPITAL", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAPITAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -943,10 +988,11 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@REGION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REGION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SUBREGION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SUBREGION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AREA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AREA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Countries] SET [NAME] = @NAME, [CAPITAL] = @CAPITAL, [POPULATION] = @POPULATION, [REGION] = @REGION, [SUBREGION] = @SUBREGION, [DATE] = @DATE WHERE (([ID] = @Original_ID) AND ([NAME] = @Original_NAME) AND ([CAPITAL] = @Original_CAPITAL) AND ((@IsNull_POPULATION = 1 AND [POPULATION] IS NULL) OR ([POPULATION] = @Original_POPULATION)) AND ([REGION] = @Original_REGION) AND ([SUBREGION] = @Original_SUBREGION) AND ((@IsNull_DATE = 1 AND [DATE] IS NULL) OR ([DATE] = @Original_DATE)));
-SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Countries] SET [NAME] = @NAME, [CAPITAL] = @CAPITAL, [POPULATION] = @POPULATION, [REGION] = @REGION, [SUBREGION] = @SUBREGION, [DATE] = @DATE, [AREA] = @AREA WHERE (([ID] = @Original_ID) AND ([NAME] = @Original_NAME) AND ([CAPITAL] = @Original_CAPITAL) AND ((@IsNull_POPULATION = 1 AND [POPULATION] IS NULL) OR ([POPULATION] = @Original_POPULATION)) AND ([REGION] = @Original_REGION) AND ([SUBREGION] = @Original_SUBREGION) AND ((@IsNull_DATE = 1 AND [DATE] IS NULL) OR ([DATE] = @Original_DATE)) AND ((@IsNull_AREA = 1 AND [AREA] IS NULL) OR ([AREA] = @Original_AREA)));
+SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE, AREA FROM Countries WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CAPITAL", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAPITAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -954,6 +1000,7 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@REGION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REGION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SUBREGION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SUBREGION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AREA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AREA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NAME", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CAPITAL", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAPITAL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -963,6 +1010,8 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SUBREGION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SUBREGION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DATE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AREA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AREA", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AREA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AREA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -979,7 +1028,8 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM dbo.Countries";
+            this._commandCollection[0].CommandText = "SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE, AREA FROM Countrie" +
+                "s";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1040,7 +1090,7 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_NAME, string Original_CAPITAL, global::System.Nullable<int> Original_POPULATION, string Original_REGION, string Original_SUBREGION, global::System.Nullable<global::System.DateTime> Original_DATE) {
+        public virtual int Delete(int Original_ID, string Original_NAME, string Original_CAPITAL, global::System.Nullable<int> Original_POPULATION, string Original_REGION, string Original_SUBREGION, global::System.Nullable<global::System.DateTime> Original_DATE, global::System.Nullable<int> Original_AREA) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_NAME == null)) {
                 throw new global::System.ArgumentNullException("Original_NAME");
@@ -1082,6 +1132,14 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
+            if ((Original_AREA.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_AREA.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1102,7 +1160,7 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string NAME, string CAPITAL, global::System.Nullable<int> POPULATION, string REGION, string SUBREGION, global::System.Nullable<global::System.DateTime> DATE) {
+        public virtual int Insert(string NAME, string CAPITAL, global::System.Nullable<int> POPULATION, string REGION, string SUBREGION, global::System.Nullable<global::System.DateTime> DATE, global::System.Nullable<int> AREA) {
             if ((NAME == null)) {
                 throw new global::System.ArgumentNullException("NAME");
             }
@@ -1139,6 +1197,12 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
+            if ((AREA.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(AREA.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1159,7 +1223,23 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string NAME, string CAPITAL, global::System.Nullable<int> POPULATION, string REGION, string SUBREGION, global::System.Nullable<global::System.DateTime> DATE, int Original_ID, string Original_NAME, string Original_CAPITAL, global::System.Nullable<int> Original_POPULATION, string Original_REGION, string Original_SUBREGION, global::System.Nullable<global::System.DateTime> Original_DATE, int ID) {
+        public virtual int Update(
+                    string NAME, 
+                    string CAPITAL, 
+                    global::System.Nullable<int> POPULATION, 
+                    string REGION, 
+                    string SUBREGION, 
+                    global::System.Nullable<global::System.DateTime> DATE, 
+                    global::System.Nullable<int> AREA, 
+                    int Original_ID, 
+                    string Original_NAME, 
+                    string Original_CAPITAL, 
+                    global::System.Nullable<int> Original_POPULATION, 
+                    string Original_REGION, 
+                    string Original_SUBREGION, 
+                    global::System.Nullable<global::System.DateTime> Original_DATE, 
+                    global::System.Nullable<int> Original_AREA, 
+                    int ID) {
             if ((NAME == null)) {
                 throw new global::System.ArgumentNullException("NAME");
             }
@@ -1196,48 +1276,62 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID));
+            if ((AREA.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(AREA.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID));
             if ((Original_NAME == null)) {
                 throw new global::System.ArgumentNullException("Original_NAME");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_NAME));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_NAME));
             }
             if ((Original_CAPITAL == null)) {
                 throw new global::System.ArgumentNullException("Original_CAPITAL");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_CAPITAL));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_CAPITAL));
             }
             if ((Original_POPULATION.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_POPULATION.Value));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_POPULATION.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             if ((Original_REGION == null)) {
                 throw new global::System.ArgumentNullException("Original_REGION");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_REGION));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_REGION));
             }
             if ((Original_SUBREGION == null)) {
                 throw new global::System.ArgumentNullException("Original_SUBREGION");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_SUBREGION));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_SUBREGION));
             }
             if ((Original_DATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_DATE.Value));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_DATE.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ID));
+            if ((Original_AREA.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_AREA.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1258,8 +1352,8 @@ SELECT ID, NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE FROM Countries WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string NAME, string CAPITAL, global::System.Nullable<int> POPULATION, string REGION, string SUBREGION, global::System.Nullable<global::System.DateTime> DATE, int Original_ID, string Original_NAME, string Original_CAPITAL, global::System.Nullable<int> Original_POPULATION, string Original_REGION, string Original_SUBREGION, global::System.Nullable<global::System.DateTime> Original_DATE) {
-            return this.Update(NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE, Original_ID, Original_NAME, Original_CAPITAL, Original_POPULATION, Original_REGION, Original_SUBREGION, Original_DATE, Original_ID);
+        public virtual int Update(string NAME, string CAPITAL, global::System.Nullable<int> POPULATION, string REGION, string SUBREGION, global::System.Nullable<global::System.DateTime> DATE, global::System.Nullable<int> AREA, int Original_ID, string Original_NAME, string Original_CAPITAL, global::System.Nullable<int> Original_POPULATION, string Original_REGION, string Original_SUBREGION, global::System.Nullable<global::System.DateTime> Original_DATE, global::System.Nullable<int> Original_AREA) {
+            return this.Update(NAME, CAPITAL, POPULATION, REGION, SUBREGION, DATE, AREA, Original_ID, Original_NAME, Original_CAPITAL, Original_POPULATION, Original_REGION, Original_SUBREGION, Original_DATE, Original_AREA, Original_ID);
         }
     }
     
