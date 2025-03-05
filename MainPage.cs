@@ -19,13 +19,7 @@ namespace VisitedCountries
         {
             InitializeComponent();
             InitializeMaterialSkin();
-            CustomizeUI();
-
-            ListOfCountriesPage listPage = Application.OpenForms.OfType<ListOfCountriesPage>().FirstOrDefault();
-            if(listPage != null )
-            {
-                listPage.InitList(DatabaseManager.Instance.GetData());
-            }
+            CustomizeUI();     
         }
 
         private void InitializeMaterialSkin()
@@ -80,16 +74,9 @@ namespace VisitedCountries
             CountryNameTextBox.Clear();
         }
 
-        private void QuitTabPageClick(object sender, EventArgs e)
+        private void QuitTabPageEnter(object sender, EventArgs e)
         { 
             Application.Exit();
-        }
-
-        private void CountriesTabPageClick(object sender, EventArgs e)
-        {
-            ListOfCountriesPage page = new ListOfCountriesPage();
-            this.Hide();
-            page.Show();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
@@ -98,6 +85,5 @@ namespace VisitedCountries
             this.countriesTableAdapter.Fill(this.visitedCountriesDBDataSet.Countries);
 
         }
-
     }
 }

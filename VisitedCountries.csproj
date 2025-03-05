@@ -63,12 +63,6 @@
     <Compile Include="DisplayDataPage.Designer.cs">
       <DependentUpon>DisplayDataPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListOfCountriesPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListOfCountriesPage.Designer.cs">
-      <DependentUpon>ListOfCountriesPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,9 +78,6 @@
     </Compile>
     <EmbeddedResource Include="DisplayDataPage.resx">
       <DependentUpon>DisplayDataPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListOfCountriesPage.resx">
-      <DependentUpon>ListOfCountriesPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>

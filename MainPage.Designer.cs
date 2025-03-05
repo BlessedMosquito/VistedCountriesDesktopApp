@@ -42,16 +42,16 @@ namespace VisitedCountries
             this.QuitTabPage = new System.Windows.Forms.TabPage();
             this.CountriesTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.visitedCountriesDBDataSet = new VisitedCountries.VisitedCountriesDBDataSet();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.HomeTabPage = new System.Windows.Forms.TabPage();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.SearchTabPage = new System.Windows.Forms.TabPage();
             this.countriesTableAdapter = new VisitedCountries.VisitedCountriesDBDataSetTableAdapters.CountriesTableAdapter();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CountriesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.countriesBindingSource)).BeginInit();
@@ -68,7 +68,7 @@ namespace VisitedCountries
             this.SearchButton.Depth = 0;
             this.SearchButton.HighEmphasis = true;
             this.SearchButton.Icon = null;
-            this.SearchButton.Location = new System.Drawing.Point(270, 277);
+            this.SearchButton.Location = new System.Drawing.Point(334, 180);
             this.SearchButton.Margin = new System.Windows.Forms.Padding(20);
             this.SearchButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.SearchButton.Name = "SearchButton";
@@ -83,18 +83,23 @@ namespace VisitedCountries
             // 
             // CountryNameTextBox
             // 
+            this.CountryNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CountryNameTextBox.AnimateReadOnly = false;
             this.CountryNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CountryNameTextBox.Depth = 0;
             this.CountryNameTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.CountryNameTextBox.Hint = "Enter country name...";
             this.CountryNameTextBox.LeadingIcon = null;
-            this.CountryNameTextBox.Location = new System.Drawing.Point(158, 115);
+            this.CountryNameTextBox.Location = new System.Drawing.Point(180, 100);
+            this.CountryNameTextBox.Margin = new System.Windows.Forms.Padding(100);
             this.CountryNameTextBox.MaxLength = 50;
             this.CountryNameTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.CountryNameTextBox.Multiline = false;
             this.CountryNameTextBox.Name = "CountryNameTextBox";
-            this.CountryNameTextBox.Size = new System.Drawing.Size(300, 50);
+            this.CountryNameTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.CountryNameTextBox.Size = new System.Drawing.Size(400, 50);
             this.CountryNameTextBox.TabIndex = 1;
             this.CountryNameTextBox.Text = "";
             this.CountryNameTextBox.TrailingIcon = null;
@@ -104,11 +109,11 @@ namespace VisitedCountries
             this.QuitTabPage.Location = new System.Drawing.Point(4, 22);
             this.QuitTabPage.Name = "QuitTabPage";
             this.QuitTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.QuitTabPage.Size = new System.Drawing.Size(644, 457);
+            this.QuitTabPage.Size = new System.Drawing.Size(780, 501);
             this.QuitTabPage.TabIndex = 1;
             this.QuitTabPage.Text = "Quit";
             this.QuitTabPage.UseVisualStyleBackColor = true;
-            this.QuitTabPage.Click += new System.EventHandler(this.CountriesTabPageClick);
+            this.QuitTabPage.Enter += new System.EventHandler(this.QuitTabPageEnter);
             // 
             // CountriesTabPage
             // 
@@ -118,7 +123,7 @@ namespace VisitedCountries
             this.CountriesTabPage.Name = "CountriesTabPage";
             this.CountriesTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.CountriesTabPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CountriesTabPage.Size = new System.Drawing.Size(676, 457);
+            this.CountriesTabPage.Size = new System.Drawing.Size(780, 501);
             this.CountriesTabPage.TabIndex = 0;
             this.CountriesTabPage.Text = "Countries";
             this.CountriesTabPage.UseVisualStyleBackColor = true;
@@ -133,12 +138,12 @@ namespace VisitedCountries
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlDark;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -148,14 +153,50 @@ namespace VisitedCountries
             this.dATEDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.countriesBindingSource;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView1.Location = new System.Drawing.Point(2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 443);
+            this.dataGridView1.Size = new System.Drawing.Size(774, 495);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // IndexColumn
+            // 
+            this.IndexColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.NullValue = null;
+            this.IndexColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.IndexColumn.HeaderText = "Index";
+            this.IndexColumn.MinimumWidth = 50;
+            this.IndexColumn.Name = "IndexColumn";
+            this.IndexColumn.ReadOnly = true;
+            this.IndexColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // nAMEDataGridViewTextBoxColumn
+            // 
+            this.nAMEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nAMEDataGridViewTextBoxColumn.DataPropertyName = "NAME";
+            this.nAMEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.nAMEDataGridViewTextBoxColumn.HeaderText = "Country Name";
+            this.nAMEDataGridViewTextBoxColumn.MinimumWidth = 50;
+            this.nAMEDataGridViewTextBoxColumn.Name = "nAMEDataGridViewTextBoxColumn";
+            this.nAMEDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nAMEDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dATEDataGridViewTextBoxColumn
+            // 
+            this.dATEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dATEDataGridViewTextBoxColumn.DataPropertyName = "DATE";
+            this.dATEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dATEDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dATEDataGridViewTextBoxColumn.MinimumWidth = 50;
+            this.dATEDataGridViewTextBoxColumn.Name = "dATEDataGridViewTextBoxColumn";
+            this.dATEDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dATEDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // countriesBindingSource
             // 
@@ -179,7 +220,7 @@ namespace VisitedCountries
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(684, 483);
+            this.materialTabControl1.Size = new System.Drawing.Size(788, 527);
             this.materialTabControl1.TabIndex = 3;
             // 
             // HomeTabPage
@@ -187,26 +228,9 @@ namespace VisitedCountries
             this.HomeTabPage.Controls.Add(this.materialLabel1);
             this.HomeTabPage.Location = new System.Drawing.Point(4, 22);
             this.HomeTabPage.Name = "HomeTabPage";
-            this.HomeTabPage.Size = new System.Drawing.Size(644, 457);
+            this.HomeTabPage.Size = new System.Drawing.Size(780, 501);
             this.HomeTabPage.TabIndex = 3;
             this.HomeTabPage.Text = "Home";
-            this.HomeTabPage.UseVisualStyleBackColor = true;
-            // 
-            // SearchTabPage
-            // 
-            this.SearchTabPage.Controls.Add(this.CountryNameTextBox);
-            this.SearchTabPage.Controls.Add(this.SearchButton);
-            this.SearchTabPage.Location = new System.Drawing.Point(4, 22);
-            this.SearchTabPage.Name = "SearchTabPage";
-            this.SearchTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchTabPage.Size = new System.Drawing.Size(644, 457);
-            this.SearchTabPage.TabIndex = 2;
-            this.SearchTabPage.Text = "Search";
-            this.SearchTabPage.UseVisualStyleBackColor = true;
-            // 
-            // countriesTableAdapter
-            // 
-            this.countriesTableAdapter.ClearBeforeFill = true;
             // 
             // materialLabel1
             // 
@@ -216,8 +240,8 @@ namespace VisitedCountries
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(262, 178);
-            this.materialLabel1.Margin = new System.Windows.Forms.Padding(50);
+            this.materialLabel1.Location = new System.Drawing.Point(329, 50);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(300, 50, 300, 50);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(81, 19);
@@ -225,43 +249,27 @@ namespace VisitedCountries
             this.materialLabel1.Text = "Welcome!\r\n";
             this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // IndexColumn
+            // SearchTabPage
             // 
-            this.IndexColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle2.NullValue = null;
-            this.IndexColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.IndexColumn.HeaderText = "Index";
-            this.IndexColumn.MinimumWidth = 50;
-            this.IndexColumn.Name = "IndexColumn";
-            this.IndexColumn.ReadOnly = true;
-            this.IndexColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SearchTabPage.Controls.Add(this.CountryNameTextBox);
+            this.SearchTabPage.Controls.Add(this.SearchButton);
+            this.SearchTabPage.Location = new System.Drawing.Point(4, 22);
+            this.SearchTabPage.Name = "SearchTabPage";
+            this.SearchTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SearchTabPage.Size = new System.Drawing.Size(780, 501);
+            this.SearchTabPage.TabIndex = 2;
+            this.SearchTabPage.Text = "Search";
+            this.SearchTabPage.UseVisualStyleBackColor = true;
             // 
-            // nAMEDataGridViewTextBoxColumn
+            // countriesTableAdapter
             // 
-            this.nAMEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nAMEDataGridViewTextBoxColumn.DataPropertyName = "NAME";
-            this.nAMEDataGridViewTextBoxColumn.HeaderText = "Country Name";
-            this.nAMEDataGridViewTextBoxColumn.MinimumWidth = 50;
-            this.nAMEDataGridViewTextBoxColumn.Name = "nAMEDataGridViewTextBoxColumn";
-            this.nAMEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nAMEDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dATEDataGridViewTextBoxColumn
-            // 
-            this.dATEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dATEDataGridViewTextBoxColumn.DataPropertyName = "DATE";
-            this.dATEDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dATEDataGridViewTextBoxColumn.MinimumWidth = 50;
-            this.dATEDataGridViewTextBoxColumn.Name = "dATEDataGridViewTextBoxColumn";
-            this.dATEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dATEDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.countriesTableAdapter.ClearBeforeFill = true;
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 634);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.materialTabControl1);
             this.DrawerTabControl = this.materialTabControl1;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
