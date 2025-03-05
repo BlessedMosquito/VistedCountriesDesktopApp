@@ -117,7 +117,8 @@ namespace VisitedCountries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Sizable = false;
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.InformationLabel);
             this.Controls.Add(this.AddDataButton);

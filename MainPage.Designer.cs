@@ -37,14 +37,15 @@ namespace VisitedCountries
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.SearchButton = new MaterialSkin.Controls.MaterialButton();
             this.CountryNameTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.QuitTabPage = new System.Windows.Forms.TabPage();
             this.CountriesTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.visitedCountriesDBDataSet = new VisitedCountries.VisitedCountriesDBDataSet();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
@@ -52,6 +53,9 @@ namespace VisitedCountries
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.SearchTabPage = new System.Windows.Forms.TabPage();
             this.countriesTableAdapter = new VisitedCountries.VisitedCountriesDBDataSetTableAdapters.CountriesTableAdapter();
+            this.nAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rEGIONDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CountriesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.countriesBindingSource)).BeginInit();
@@ -109,7 +113,7 @@ namespace VisitedCountries
             this.QuitTabPage.Location = new System.Drawing.Point(4, 22);
             this.QuitTabPage.Name = "QuitTabPage";
             this.QuitTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.QuitTabPage.Size = new System.Drawing.Size(780, 501);
+            this.QuitTabPage.Size = new System.Drawing.Size(780, 474);
             this.QuitTabPage.TabIndex = 1;
             this.QuitTabPage.Text = "Quit";
             this.QuitTabPage.UseVisualStyleBackColor = true;
@@ -117,8 +121,11 @@ namespace VisitedCountries
             // 
             // CountriesTabPage
             // 
+            this.CountriesTabPage.BackColor = System.Drawing.Color.DimGray;
+            this.CountriesTabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CountriesTabPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CountriesTabPage.Controls.Add(this.dataGridView1);
+            this.CountriesTabPage.ForeColor = System.Drawing.SystemColors.Desktop;
             this.CountriesTabPage.Location = new System.Drawing.Point(4, 22);
             this.CountriesTabPage.Name = "CountriesTabPage";
             this.CountriesTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -127,77 +134,45 @@ namespace VisitedCountries
             this.CountriesTabPage.TabIndex = 0;
             this.CountriesTabPage.Text = "Countries";
             this.CountriesTabPage.UseVisualStyleBackColor = true;
-            this.CountriesTabPage.Enter += new System.EventHandler(this.CountriesTabPageEnter);
+            this.CountriesTabPage.Enter += new System.EventHandler(this.LoadDataToTable);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IndexColumn,
             this.nAMEDataGridViewTextBoxColumn,
-            this.dATEDataGridViewTextBoxColumn});
+            this.dATEDataGridViewTextBoxColumn,
+            this.rEGIONDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.countriesBindingSource;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.dataGridView1.Location = new System.Drawing.Point(2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(774, 495);
+            this.dataGridView1.Size = new System.Drawing.Size(766, 491);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // IndexColumn
-            // 
-            this.IndexColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.NullValue = null;
-            this.IndexColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.IndexColumn.HeaderText = "Index";
-            this.IndexColumn.MinimumWidth = 50;
-            this.IndexColumn.Name = "IndexColumn";
-            this.IndexColumn.ReadOnly = true;
-            this.IndexColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // nAMEDataGridViewTextBoxColumn
-            // 
-            this.nAMEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nAMEDataGridViewTextBoxColumn.DataPropertyName = "NAME";
-            this.nAMEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.nAMEDataGridViewTextBoxColumn.HeaderText = "Country Name";
-            this.nAMEDataGridViewTextBoxColumn.MinimumWidth = 50;
-            this.nAMEDataGridViewTextBoxColumn.Name = "nAMEDataGridViewTextBoxColumn";
-            this.nAMEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nAMEDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dATEDataGridViewTextBoxColumn
-            // 
-            this.dATEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dATEDataGridViewTextBoxColumn.DataPropertyName = "DATE";
-            this.dATEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dATEDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dATEDataGridViewTextBoxColumn.MinimumWidth = 50;
-            this.dATEDataGridViewTextBoxColumn.Name = "dATEDataGridViewTextBoxColumn";
-            this.dATEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dATEDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // countriesBindingSource
             // 
@@ -257,7 +232,7 @@ namespace VisitedCountries
             this.SearchTabPage.Location = new System.Drawing.Point(4, 22);
             this.SearchTabPage.Name = "SearchTabPage";
             this.SearchTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchTabPage.Size = new System.Drawing.Size(780, 501);
+            this.SearchTabPage.Size = new System.Drawing.Size(780, 474);
             this.SearchTabPage.TabIndex = 2;
             this.SearchTabPage.Text = "Search";
             this.SearchTabPage.UseVisualStyleBackColor = true;
@@ -265,6 +240,48 @@ namespace VisitedCountries
             // countriesTableAdapter
             // 
             this.countriesTableAdapter.ClearBeforeFill = true;
+            // 
+            // nAMEDataGridViewTextBoxColumn
+            // 
+            this.nAMEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nAMEDataGridViewTextBoxColumn.DataPropertyName = "NAME";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.NullValue = null;
+            this.nAMEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.nAMEDataGridViewTextBoxColumn.HeaderText = "Country name";
+            this.nAMEDataGridViewTextBoxColumn.MinimumWidth = 50;
+            this.nAMEDataGridViewTextBoxColumn.Name = "nAMEDataGridViewTextBoxColumn";
+            this.nAMEDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dATEDataGridViewTextBoxColumn
+            // 
+            this.dATEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dATEDataGridViewTextBoxColumn.DataPropertyName = "DATE";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle4.NullValue = null;
+            this.dATEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dATEDataGridViewTextBoxColumn.HeaderText = "Visitation date";
+            this.dATEDataGridViewTextBoxColumn.MinimumWidth = 50;
+            this.dATEDataGridViewTextBoxColumn.Name = "dATEDataGridViewTextBoxColumn";
+            this.dATEDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rEGIONDataGridViewTextBoxColumn
+            // 
+            this.rEGIONDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rEGIONDataGridViewTextBoxColumn.DataPropertyName = "REGION";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.NullValue = null;
+            this.rEGIONDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.rEGIONDataGridViewTextBoxColumn.HeaderText = "Region";
+            this.rEGIONDataGridViewTextBoxColumn.MinimumWidth = 50;
+            this.rEGIONDataGridViewTextBoxColumn.Name = "rEGIONDataGridViewTextBoxColumn";
+            this.rEGIONDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // MainPage
             // 
@@ -274,10 +291,12 @@ namespace VisitedCountries
             this.Controls.Add(this.materialTabControl1);
             this.DrawerTabControl = this.materialTabControl1;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainPage";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Visited Countries";
-            this.Load += new System.EventHandler(this.MainPage_Load);
+            this.Load += new System.EventHandler(this.LoadDataToTable);
             this.CountriesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.countriesBindingSource)).EndInit();
@@ -305,9 +324,9 @@ namespace VisitedCountries
         private VisitedCountriesDBDataSetTableAdapters.CountriesTableAdapter countriesTableAdapter;
         private TabPage HomeTabPage;
         private MaterialLabel materialLabel1;
-        private DataGridViewTextBoxColumn IndexColumn;
         private DataGridViewTextBoxColumn nAMEDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dATEDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn rEGIONDataGridViewTextBoxColumn;
     }
 }
 

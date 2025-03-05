@@ -45,6 +45,20 @@ namespace VisitedCountries
             };
         }
 
+        /*private void LoadData()
+        {
+            try
+            {
+                DatabaseManager.Instance.Adapter.Fill(dataSet.Countries);
+                dataGridView1.DataSource = dataSet.Countries;
+                System.Console.WriteLine("Table refreshed");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while loading data: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }*/
+
         private async void SearchButtonClick(object sender, EventArgs e)
         {
             string countryName = CountryNameTextBox.Text.Trim();
@@ -87,12 +101,7 @@ namespace VisitedCountries
             }
         }
 
-        private void CountriesTabPageEnter(object sender, EventArgs e)
-        {
-            dataGridView1.Refresh();
-        }
-
-        private void MainPage_Load(object sender, EventArgs e)
+        private void LoadDataToTable(object sender, EventArgs e)
         {
             // TODO: Ten wiersz kodu wczytuje dane do tabeli 'visitedCountriesDBDataSet.Countries' . Możesz go przenieść lub usunąć.
             this.countriesTableAdapter.Fill(this.visitedCountriesDBDataSet.Countries);

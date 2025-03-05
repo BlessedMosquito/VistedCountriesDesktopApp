@@ -10,12 +10,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using VisitedCountries.VisitedCountriesDBDataSetTableAdapters;
 
 namespace VisitedCountries
 {
     public partial class DisplayDataPage : MaterialForm
     {
-        Country country;
+        private Country country;
+        private MainPage main = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
+
+        CountriesTableAdapter adapter = new CountriesTableAdapter();
         public DisplayDataPage(Country _country)
         {
             InitializeComponent();
@@ -54,7 +58,10 @@ namespace VisitedCountries
         {  
             try
             {
-                DatabaseManager.Instance.AddData(country, DateTimePicker.Value.Date);
+
+                //DatabaseManager.Instance.AddData(country, DateTimePicker.Value.Date);
+                string capital = country.CapitalListToString();
+                adapter.Insert(country.Name.Official, capital, country.Population, country.Region, country.SubRegion, DateTimePicker.Value.Date);
                 MessageBox.Show("Added country");
             } catch(Exception ex) 
             {
@@ -68,7 +75,6 @@ namespace VisitedCountries
         {
             this.Close();
 
-            MainPage main = Application.OpenForms.OfType<MainPage>().FirstOrDefault();
             if (main != null)
             {
                 main.Show();
