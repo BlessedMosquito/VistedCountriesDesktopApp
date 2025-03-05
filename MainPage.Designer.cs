@@ -127,6 +127,7 @@ namespace VisitedCountries
             this.CountriesTabPage.TabIndex = 0;
             this.CountriesTabPage.Text = "Countries";
             this.CountriesTabPage.UseVisualStyleBackColor = true;
+            this.CountriesTabPage.Enter += new System.EventHandler(this.CountriesTabPageEnter);
             // 
             // dataGridView1
             // 

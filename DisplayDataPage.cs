@@ -72,7 +72,6 @@ namespace VisitedCountries
             if (main != null)
             {
                 main.Show();
-                main.ClearTextField();
             }
         }
     }

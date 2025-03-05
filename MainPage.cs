@@ -51,32 +51,45 @@ namespace VisitedCountries
 
             if (string.IsNullOrWhiteSpace(countryName))
             {
-                MessageBox.Show("Wpisz nazwę kraju!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Enter country name!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            var country = await APIQuery.Instance.SearchCountryByNameAsync(countryName);
-
-            if (country != null)
+            try
             {
-                DisplayDataPage page = new DisplayDataPage(country);
-                page.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nie znaleziono kraju!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                var country = await APIQuery.Instance.SearchCountryByNameAsync(countryName);
 
-        public void ClearTextField()
-        {
+                if (country != null)
+                {
+                    DisplayDataPage page = new DisplayDataPage(country);
+                    page.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Could not  find given country!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error has occured: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             CountryNameTextBox.Clear();
+            
         }
 
         private void QuitTabPageEnter(object sender, EventArgs e)
-        { 
-            Application.Exit();
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to quit application?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void CountriesTabPageEnter(object sender, EventArgs e)
+        {
+            dataGridView1.Refresh();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
